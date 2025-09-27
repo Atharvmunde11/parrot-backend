@@ -1,9 +1,13 @@
 // backend/token.js
+const dotenv = require("dotenv");
+dotenv.config();
+
 const express = require("express");
 const { RtcTokenBuilder, RtcRole } = require("agora-access-token");
 const morgan = require("morgan");
 const connectDB = require("./model/db.connection");
 const userRoute = require("./routes/user.route");
+
 // const Redis = require("./model/redis/db.connection");
 
 const APP_ID = "55bd35ed4f334012a3878acfecceb522";

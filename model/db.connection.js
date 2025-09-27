@@ -2,13 +2,16 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://atharvmunde987_db_user:uPBtvLXT95Nh7aH5@cluster0.ekl2tdn.mongodb.net/",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    );
+    const mongoUser = process.env.MONGO_USER;
+    const mongoPassword = process.env.MONGO_PASSWORD;
+    const mongoHost = process.env.MONGO_HOST;
+    const mongoDb = process.env.MONGO_DB;
+    const uri = `mongodb+srv://${mongoUser}:${mongoPassword}@${mongoHost}/${mongoDb}`;
+
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
     console.log("✅ MongoDB connected successfully");
   } catch (err) {
